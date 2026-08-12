@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="pt-mz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melven — Portfólio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #1B1918;
+    --bg-alt: #221F1C;
+    --panel: #262320;
+    --text: #EDE7DE;
+    --text-dim: #A79E92;
+    --copper: #C97A4A;
+    --signal: #6FA8A0;
+    --line: #3A3733;
+    --mono: 'IBM Plex Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'IBM Plex Sans', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--copper); color:var(--bg);}
+
+  .wrap{max-width:1040px; margin:0 auto; padding:0 32px;}
+
+  /* NAV */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(27,25,24,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  header.nav .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    height:64px;
+  }
+  .logo{
+    font-family:var(--mono); font-size:14px; letter-spacing:0.08em;
+    color:var(--signal);
+  }
+  .logo span{color:var(--text-dim);}
+  nav.links{display:flex; gap:28px; font-family:var(--mono); font-size:13px;}
+  nav.links a{
+    color:var(--text-dim); text-decoration:none; letter-spacing:0.03em;
+    transition:color 0.2s;
+  }
+  nav.links a:hover, nav.links a:focus-visible{color:var(--copper);}
+
+  /* HERO */
+  .hero{
+    padding:120px 0 90px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero .eyebrow{
+    font-family:var(--mono); font-size:13px; color:var(--signal);
+    letter-spacing:0.12em; text-transform:uppercase;
+    display:flex; align-items:center; gap:10px; margin-bottom:24px;
+  }
+  .eyebrow::before{
+    content:''; width:8px; height:8px; border-radius:50%;
+    background:var(--signal);
+    box-shadow:0 0 0 0 rgba(111,168,160,0.6);
+    animation:pulse 2.4s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(111,168,160,0.5);}
+    70%{box-shadow:0 0 0 10px rgba(111,168,160,0);}
+    100%{box-shadow:0 0 0 0 rgba(111,168,160,0);}
+  }
+  .hero .greet{
+    font-family:var(--body); font-size:20px; color:var(--text-dim);
+    margin-bottom:8px;
+  }
+  .hero h1{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(48px, 9vw, 96px);
+    line-height:1.0; letter-spacing:-0.02em;
+    max-width:720px; color:var(--copper);
+  }
+  .hero .role{
+    font-family:var(--mono); font-size:16px; color:var(--signal);
+    margin-top:14px; letter-spacing:0.02em;
+  }
+  .hero p.lede{
+    margin-top:26px; max-width:520px;
+    font-size:18px; color:var(--text-dim);
+  }
+  .hero .cta-row{
+    margin-top:40px; display:flex; gap:16px; flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.04em;
+    padding:13px 22px; border-radius:2px;
+    text-decoration:none; display:inline-block;
+    transition:transform 0.15s, background 0.15s, color 0.15s;
+    border:1px solid var(--line);
+  }
+  .btn.primary{background:var(--copper); color:var(--bg); border-color:var(--copper);}
+  .btn.primary:hover{transform:translateY(-2px); background:#DA8C5E;}
+  .btn.ghost{color:var(--text); }
+  .btn.ghost:hover{border-color:var(--signal); color:var(--signal); transform:translateY(-2px);}
+
+  /* signal trace */
+  .trace{
+    margin-top:64px; width:100%; height:90px;
+    display:block;
+  }
+  .trace path{
+    fill:none; stroke:var(--signal); stroke-width:1.6;
+    stroke-dasharray:900; stroke-dashoffset:900;
+    animation:draw 2.8s ease-out forwards 0.3s;
+    opacity:0.85;
+  }
+  .trace .grid-line{stroke:var(--line); stroke-width:1; opacity:0.6; stroke-dasharray:none; animation:none;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+
+  /* SECTIONS */
+  section{padding:90px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .sec-head{
+    display:flex; align-items:baseline; gap:16px; margin-bottom:48px;
+  }
+  .sec-num{font-family:var(--mono); color:var(--copper); font-size:14px;}
+  .sec-head h2{
+    font-family:var(--display); font-size:32px; font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  /* ABOUT */
+  .about-grid{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:56px;
+  }
+  .about-grid p{color:var(--text-dim); font-size:16px; max-width:480px;}
+  .about-grid p + p{margin-top:16px;}
+  .stack-list{
+    font-family:var(--mono); font-size:13px; color:var(--text-dim);
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .stack-list li{list-style:none; padding-left:18px; position:relative;}
+  .stack-list li::before{
+    content:'—'; position:absolute; left:0; color:var(--signal);
+  }
+  .avatar-frame{
+    width:140px; height:140px; border:1px dashed var(--line);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:24px; border-radius:4px;
+    font-family:var(--mono); font-size:11px; color:var(--text-dim);
+    background:var(--bg-alt);
+  }
+
+  /* TECH GRID */
+  .tech-grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+    gap:1px; background:var(--line); border:1px solid var(--line);
+  }
+  .tech-card{
+    background:var(--bg); padding:24px 20px;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .tech-card .name{
+    font-family:var(--display); font-size:18px; color:var(--text);
+  }
+  .tech-card .cat{
+    font-family:var(--mono); font-size:11px; color:var(--signal);
+    text-transform:uppercase; letter-spacing:0.06em;
+  }
+
+  /* PROJECTS */
+  .project{
+    display:grid; grid-template-columns:220px 1fr; gap:40px;
+    padding:36px 0; border-top:1px solid var(--line);
+  }
+  .project:first-of-type{border-top:none;}
+  .project .meta{
+    font-family:var(--mono); font-size:12px; color:var(--text-dim);
+    display:flex; flex-direction:column; gap:8px;
+  }
+  .project .meta .tag{
+    color:var(--signal);
+  }
+  .project h3{
+    font-family:var(--display); font-size:24px; font-weight:500;
+    margin-bottom:12px;
+  }
+  .project p{color:var(--text-dim); font-size:15px; max-width:560px;}
+  .project .tech{
+    margin-top:18px; display:flex; gap:8px; flex-wrap:wrap;
+  }
+  .project .tech span{
+    font-family:var(--mono); font-size:11px; color:var(--text);
+    border:1px solid var(--line); padding:4px 10px; border-radius:2px;
+  }
+  .project .link{
+    margin-top:18px; display:inline-block;
+    font-family:var(--mono); font-size:12px; color:var(--copper);
+    text-decoration:none; border-bottom:1px solid transparent;
+  }
+  .project .link:hover{border-bottom-color:var(--copper);}
+  .project .gallery{
+    margin-top:20px; display:flex; gap:10px; overflow-x:auto;
+    padding-bottom:8px;
+  }
+  .project .gallery img{
+    height:150px; width:auto; border:1px solid var(--line);
+    border-radius:2px; flex-shrink:0; background:var(--bg-alt);
+  }
+  .project .gallery::-webkit-scrollbar{height:6px;}
+  .project .gallery::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px;}
+
+  /* CONTACT */
+  .contact h2{
+    font-family:var(--display); font-size:40px; font-weight:500;
+    max-width:520px;
+  }
+  .contact p{color:var(--text-dim); margin-top:16px; max-width:460px;}
+  .contact .cta-row{margin-top:32px;}
+
+  footer{
+    padding:32px 0; border-top:1px solid var(--line);
+    font-family:var(--mono); font-size:12px; color:var(--text-dim);
+    display:flex; justify-content:space-between;
+  }
+
+  @media (max-width:720px){
+    .about-grid{grid-template-columns:1fr;}
+    .project{grid-template-columns:1fr; gap:12px;}
+    nav.links{display:none;}
+    .hero{padding:90px 0 60px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .trace path{animation:none; stroke-dashoffset:0;}
+    .eyebrow::before{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="logo">MELVEN<span>.dev</span></div>
+    <nav class="links">
+      <a href="#sobre">Sobre</a>
+      <a href="#tecnologias">Tecnologias</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Sinal ativo — Maputo, Moçambique</div>
+    <p class="greet">Olá 👋, eu sou</p>
+    <h1>Melven</h1>
+    <p class="role">Estudante de Engenharia Informática e Telecomunicações</p>
+    <p class="lede">Estudo Engenharia Informática e Telecomunicações no ISUTC (Instituto Superior de Transportes e Comunicações), em Maputo, entre eletrónica, redes e desenvolvimento de software. Este espaço reúne os projetos académicos que fui construindo pelo caminho.</p>
+    <div class="cta-row">
+      <a href="#projetos" class="btn primary">Ver projetos</a>
+      <a href="#contacto" class="btn ghost">Contactar</a>
+    </div>
+    <svg class="trace" viewBox="0 0 1000 90" preserveAspectRatio="none">
+      <line class="grid-line" x1="0" y1="45" x2="1000" y2="45"/>
+      <path d="M0,45 L120,45 L150,15 L180,75 L210,45 L340,45 L370,20 L390,70 L410,45 L560,45 L590,10 L610,80 L630,45 L1000,45"/>
+    </svg>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>Sobre</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <div class="avatar-frame">
+          <span>Foto aqui</span>
+        </div>
+        <p>Estudo Engenharia Informática e Telecomunicações no Instituto Superior de Transportes e Comunicações (ISUTC), em Maputo. O curso cruza eletrónica, teoria de comunicações, redes e desenvolvimento de software — e é nesse cruzamento que gosto de trabalhar: sistemas que ligam a parte física (sinal, rede) à parte lógica (dados, aplicação).</p>
+        <p>Os projetos abaixo nasceram de trabalhos académicos, mas foram tratados como produtos reais: modelagem de dados cuidada, interface funcional e documentação formal.</p>
+      </div>
+      <ul class="stack-list">
+        <li>Java (Swing / JavaFX)</li>
+        <li>MySQL — modelagem relacional</li>
+        <li>Modelagem ER / Diagramas de Chen</li>
+        <li>Arquitetura MVC</li>
+        <li>Redes e sistemas de comunicação</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="tecnologias">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Tecnologias</h2>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card"><span class="name">Java</span><span class="cat">Linguagem</span></div>
+      <div class="tech-card"><span class="name">Python</span><span class="cat">Linguagem</span></div>
+      <div class="tech-card"><span class="name">MySQL</span><span class="cat">Base de dados</span></div>
+      <div class="tech-card"><span class="name">Swing</span><span class="cat">Interface desktop</span></div>
+      <div class="tech-card"><span class="name">Cisco / Packet Tracer</span><span class="cat">Redes</span></div>
+      <div class="tech-card"><span class="name">Modelagem ER</span><span class="cat">Base de dados</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Projetos</h2>
+    </div>
+
+    <div class="project">
+      <div class="meta">
+        <span class="tag">Projeto académico</span>
+        <span>Desktop · Gestão comercial</span>
+      </div>
+      <div>
+        <h3>Livraria MMS, Lda.</h3>
+        <p>Sistema de gestão desktop para uma livraria, desenvolvido em Java com interface Swing sobre uma base de dados MySQL com 31 tabelas. O sistema abre num menu principal com login por utilizador (seleção de funcionário + password numérica) e distribui o trabalho por módulos: Gestão de Stock, Controlo de Vendas, Relatórios, Clientes, Caixa e Encomendas.</p>
+        <p>Contribuí com os módulos de UI do ponto de venda (POSper) — o ecrã de vendas com teclado numérico e categorias de livros (Ação, Aventura, Comédia-romântica, Horror, Novel, Romance, SCI-FI), o ecrã de produtos (TelaProducts) com sub-painéis CRUD, a manutenção de stock com registo de movimentos (entradas/saídas com motivo e armazém), e o fecho de caixa com contagem física de notas e moedas (MT), comparando o valor contado com o esperado.</p>
+        <p>No módulo de Administração implementei a gestão de funcionários (NIF, data de nascimento, salário, data de admissão, departamento e supervisor), e no módulo de Relatórios os relatórios de stock (todos os produtos, inventário atual), fecho de caixa (entradas, saídas e saldo líquido por período) e vendas por produto (unidades, preço e total faturado).</p>
+        <p>O projeto incluiu planeamento de arquitetura MVC e um modelo entidade-relacionamento (Chen) desenhado em Mermaid, com relatório académico formal em Word.</p>
+        <div class="tech">
+          <span>Java</span><span>Swing</span><span>MySQL</span><span>MVC</span><span>ERD</span>
+        </div>
+        <div class="gallery">
+          <img src="imagens/livraria-menu-principal.png" alt="Menu principal da Livraria MMS" loading="lazy">
+          <img src="imagens/livraria-login.png" alt="Ecrã de login com password numérica" loading="lazy">
+          <img src="imagens/livraria-pos-venda.png" alt="Ponto de venda com categorias de livros" loading="lazy">
+          <img src="imagens/livraria-produtos.png" alt="Módulo de gestão de produtos" loading="lazy">
+          <img src="imagens/livraria-categorias.png" alt="Gestão de categorias de livros" loading="lazy">
+          <img src="imagens/livraria-stock-movimento.png" alt="Manutenção de stock com registo de movimentos" loading="lazy">
+          <img src="imagens/livraria-fechar-caixa.png" alt="Fecho de caixa com contagem de notas e moedas" loading="lazy">
+          <img src="imagens/livraria-funcionarios.png" alt="Gestão de funcionários" loading="lazy">
+          <img src="imagens/livraria-relatorios.png" alt="Relatório de todos os produtos" loading="lazy">
+          <img src="imagens/livraria-fecho-pagamentos.png" alt="Relatório de fecho de pagamentos" loading="lazy">
+          <img src="imagens/livraria-vendas-produto.png" alt="Relatório de vendas por produto" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="meta">
+        <span class="tag">Projeto académico</span>
+        <span>Desktop · Gestão</span>
+      </div>
+      <div>
+        <h3>Sistema de Gestão de Farmácia</h3>
+        <p>Aplicação desktop em Java Swing para gerir o dia a dia de uma farmácia: clientes, produtos, fornecedores, armazéns e vendas, tudo acessível a partir de um menu principal com navegação por <code>CardLayout</code> e relógio em tempo real. O acesso é protegido por um ecrã de login.</p>
+        <p>Cada módulo segue um padrão CRUD consistente (criar, editar, remover, listar em tabela), e os produtos têm controlo de stock mínimo e validade, com um módulo de filtros dedicado para detetar stock baixo e produtos perto de expirar.</p>
+        <p>O módulo de Vendas funciona como um carrinho de compras: seleciona-se o cliente e o produto, adiciona-se ao carrinho, e o sistema calcula o subtotal com IVA (17%) automaticamente. A venda é confirmada num diálogo de resumo e, ao concluir, gera um recibo com o detalhe de cada item e atualiza o stock.</p>
+        <p>A persistência é feita por serialização de objetos Java (<code>ObjectOutputStream</code>/<code>ObjectInputStream</code>) para ficheiros <code>.dat</code>, usando uma interface marcadora (<code>Serializable</code>) que permite guardar coleções polimórficas — clientes, produtos, fornecedores, armazéns e vendas — na mesma estrutura genérica.</p>
+        <div class="tech">
+          <span>Java</span><span>Swing</span><span>CardLayout</span><span>Serialização (I/O)</span><span>POO</span>
+        </div>
+        <div class="gallery">
+          <img src="imagens/farmacia-menu.png" alt="Menu principal do Sistema de Gestão de Farmácia" loading="lazy">
+          <img src="imagens/farmacia-clientes.png" alt="Módulo de gestão de clientes" loading="lazy">
+          <img src="imagens/farmacia-produtos.png" alt="Módulo de gestão de produtos" loading="lazy">
+          <img src="imagens/farmacia-vendas-carrinho.png" alt="Carrinho de compras no módulo de vendas" loading="lazy">
+          <img src="imagens/farmacia-vendas-confirmar.png" alt="Confirmação de venda" loading="lazy">
+          <img src="imagens/farmacia-vendas-concluida.png" alt="Recibo de venda concluída" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contacto" class="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>Contacto</h2>
+    </div>
+    <h2>Vamos falar?</h2>
+    <p>Aberto a oportunidades, estágios e colaborações em telecomunicações e desenvolvimento de software.</p>
+    <div class="cta-row">
+      <a href="tel:+258850661678" class="btn primary">+258 85 066 1678</a>
+      <a href="tel:+258863278171" class="btn ghost">+258 86 327 8171</a>
+    </div>
+    <div class="cta-row">
+      <a href="mailto:mayforever219@gmail.com" class="btn primary">mayforever219@gmail.com</a>
+      <a href="https://wa.me/258863278171" class="btn ghost">WhatsApp</a>
+      <a href="https://github.com/Melvear" class="btn ghost">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%;">
+    <span>© 2026 Melven</span>
+    <span>Maputo, Moçambique</span>
+  </div>
+</footer>
+
+</body>
+</html>
