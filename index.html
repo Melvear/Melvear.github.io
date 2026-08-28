@@ -211,15 +211,14 @@
   }
   .project .link:hover{border-bottom-color:var(--copper);}
   .project .gallery{
-    margin-top:20px; display:flex; gap:10px; overflow-x:auto;
-    padding-bottom:8px;
+    margin-top:20px; display:grid;
+    grid-template-columns:repeat(2, 1fr); gap:10px;
   }
   .project .gallery img{
-    height:150px; width:auto; border:1px solid var(--line);
-    border-radius:2px; flex-shrink:0; background:var(--bg-alt);
+    width:100%; height:220px; object-fit:cover;
+    border:1px solid var(--line);
+    border-radius:2px; background:var(--bg-alt);
   }
-  .project .gallery::-webkit-scrollbar{height:6px;}
-  .project .gallery::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px;}
 
   /* CONTACT */
   .contact h2{
@@ -238,6 +237,8 @@
   @media (max-width:720px){
     .about-grid{grid-template-columns:1fr;}
     .project{grid-template-columns:1fr; gap:12px;}
+    .project .gallery{grid-template-columns:1fr;}
+    .project .gallery img{height:200px;}
     nav.links{display:none;}
     .hero{padding:90px 0 60px;}
   }
@@ -379,6 +380,32 @@
           <img src="imagens/farmacia-vendas-carrinho.png" alt="Carrinho de compras no módulo de vendas" loading="lazy">
           <img src="imagens/farmacia-vendas-confirmar.png" alt="Confirmação de venda" loading="lazy">
           <img src="imagens/farmacia-vendas-concluida.png" alt="Recibo de venda concluída" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="meta">
+        <span class="tag">Projeto pessoal</span>
+        <span>Web · Gestão de stock</span>
+      </div>
+      <div>
+        <h3>Gestão de Stock — Restaurante</h3>
+        <p>Sistema web de gestão de stock, compras e caixa para um restaurante (bar, talho e armazém), com backend em Spring Boot/Spring Security e sessão mantida por cookie HTTP. O ecrã de Resumo dá uma visão geral com produtos cadastrados, movimentos, total de compras e fechos, além do stock distribuído por localização (Armazém, Bar, Talho).</p>
+        <p>O módulo de Movimentos regista entradas, transferências, vendas, quebras, reservas e ajustes por produto, com localização (origem → destino), funcionário responsável e motivo — por exemplo, vendas apuradas por contagem de geleira no bar. O módulo de Reservas permite separar carne do armazém para eventos ou encomendas nomeadas.</p>
+        <p>O Fecho/Caixa é feito por funcionário e consultor, repartido por método de pagamento (M-Pesa, e-Mola, POS por banco — BIM, BCI, FNB — e numerário). Os módulos de Carnes e Compras de Comida cobrem o catálogo de produtos vendidos por peso e o registo de compras do restaurante, e a secção de Relatórios gera impressões de armazém de bebida, talho, fecho de caixa e registo de comida, além de indicadores gerais do sistema.</p>
+        <div class="tech" style="max-width:340px;">
+          <span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>Web</span><span>MySQL</span>
+        </div>
+        <div class="gallery">
+          <img src="imagens/stock-login.png" alt="Ecrã de login do sistema de Gestão de Stock" loading="lazy">
+          <img src="imagens/stock-resumo.png" alt="Resumo geral com stock por localização" loading="lazy">
+          <img src="imagens/stock-movimentos.png" alt="Registo de movimentos de stock" loading="lazy">
+          <img src="imagens/stock-reservas.png" alt="Reservas de carne para eventos" loading="lazy">
+          <img src="imagens/stock-carnes.png" alt="Catálogo de carnes vendidas por peso" loading="lazy">
+          <img src="imagens/stock-compras-comida.png" alt="Registo de compras de comida" loading="lazy">
+          <img src="imagens/stock-fecho-caixa.png" alt="Novo fecho de caixa por método de pagamento" loading="lazy">
+          <img src="imagens/stock-relatorios.png" alt="Relatórios e indicadores gerais do sistema" loading="lazy">
         </div>
       </div>
     </div>
